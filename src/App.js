@@ -1,34 +1,28 @@
 import "./App.css";
-import { useState } from "react";
+import React, { useState } from "react";
+import RenderDisplayCounter from "./RenderDisplayCounter";
+
+export const CounterContext = React.createContext();
 
 function App() {
-  const [todos, setTodo] = useState([]);
+  const [counter, setCounter] = useState(0);
 
   return (
     <div
       style={{
-        marginTop: "100px",
         display: "flex",
         justifyContent: "center",
+        marginTop: "10px",
         fontSize: "40px",
       }}
     >
       <div>
-        <input
-          id="todoText"
-          type="text"
-          placeholder="Enter your todo item here..."
-        />
-        <button onClick={() => setTodo([...todos, window.todoText.value])}>
-          Add Todo
-        </button>
+        <button onClick={() => setCounter(counter + 1)}>Incr Counter</button>
       </div>
       <div>
-        <ul>
-          {todos.map((todo) => {
-            return <li>{todo}</li>;
-          })}
-        </ul>
+        <CounterContext.Provider value={counter}>
+          <RenderDisplayCounter />
+        </CounterContext.Provider>
       </div>
     </div>
   );
