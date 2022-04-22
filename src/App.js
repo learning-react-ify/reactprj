@@ -1,11 +1,14 @@
 import "./App.css";
 import React, { useState } from "react";
 import RenderDisplayCounter from "./RenderDisplayCounter";
+import ThemeComp from "./ThemeComp";
 
 export const CounterContext = React.createContext();
+export const ThemeContext = React.createContext("blue");
 
 function App() {
   const [counter, setCounter] = useState(0);
+  const [theme, setTheme] = useState("blue");
 
   return (
     <div
@@ -20,9 +23,12 @@ function App() {
         <button onClick={() => setCounter(counter + 1)}>Incr Counter</button>
       </div>
       <div>
-        <CounterContext.Provider value={counter}>
-          <RenderDisplayCounter />
-        </CounterContext.Provider>
+        <ThemeContext.Provider value={{ theme, setTheme }}>
+          <CounterContext.Provider value={counter}>
+            <RenderDisplayCounter />
+          </CounterContext.Provider>
+          <ThemeComp />
+        </ThemeContext.Provider>
       </div>
     </div>
   );
