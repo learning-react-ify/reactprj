@@ -1,13 +1,11 @@
 import "./App.css";
-import React from "react";
-import PropTypes from "prop-types";
+import React, { useReducer } from "react";
 
 function App() {
   return (
     <>
       <div>
-        <Counter value="hello" />
-        <Counter value={true} />
+        <Counter />
       </div>
     </>
   );
@@ -17,8 +15,8 @@ function Counter({ value }) {
   return <h1>Counter: {value}</h1>;
 }
 
-Counter.propTypes = {
-  value: PropTypes.string.isRequired,
+Counter.defaultProps = {
+  value: 0,
 };
 
 export default App;
