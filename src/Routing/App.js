@@ -32,7 +32,7 @@ function App() {
         <Route path="/profile" element={<Profile />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
-        <Route path="/user/:userId" element={<User />} />
+        <Route path="/user/:idr" element={<User />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
@@ -92,9 +92,9 @@ function NotFound() {
 }
 
 function User() {
-  const pObj = useParams();
+  const { idr } = useParams();
 
-  return <h1>User: {pObj.userId}</h1>;
+  return <h1>User: {idr}</h1>;
 }
 
 export default App;
